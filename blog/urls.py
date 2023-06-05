@@ -4,6 +4,7 @@ from blog.views import PostModeViewSet
 
 router = DefaultRouter()
 router.register(r'api', PostModeViewSet)
+
 urlpatterns = [
     path('', include(router.urls))
 ]
