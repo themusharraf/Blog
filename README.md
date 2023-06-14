@@ -8,9 +8,9 @@ JWT ✅
 
 Auth login register ✅
 
- auth/register/ [name='auth_register']
- auth/ login/ [name='token_obtain_pair']
- auth/login/refresh/ [name='token_refresh']
+ auth/register/
+ auth/ login/ 
+ auth/login/refresh/ 
 
 Blog post category ✅
 
