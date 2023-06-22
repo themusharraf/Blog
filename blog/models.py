@@ -24,3 +24,10 @@ class Post(models.Model):
 
     class Meta:
         ordering = ('-created_at',)
+
+
+class Comment(models.Model):
+    body = models.TextField(blank=False)
+    owner = models.ForeignKey('auth.User', related_name='comments', on_delete=models.CASCADE)
+    post = models.ForeignKey('Post', related_name='comments', on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)

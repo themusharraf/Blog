@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.utils.html import format_html
-from blog.models import Post, Category
+from blog.models import Post, Category, Comment
 
 
 @admin.register(Post)
@@ -14,3 +14,9 @@ class PostAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Category)
+
+
+@admin.register(Comment)
+class PostAdmin(admin.ModelAdmin):
+    list_display = ('owner', 'body', 'post', 'created_at')
+    list_filter = ['body']
