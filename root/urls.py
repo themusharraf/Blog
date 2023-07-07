@@ -1,3 +1,4 @@
+from root.settings import DEBUG, STATIC_ROOT, STATIC_URL
 from django.contrib import admin
 from django.urls import path, include, re_path
 from django.conf.urls.static import static
@@ -20,11 +21,12 @@ schema_view = get_schema_view(
 )
 
 urlpatterns = [
-                  path('admin/', admin.site.urls),
-                  path('', include('blog.urls')),
-                  path('auth/', include('auth.urls')),
-                  re_path(r'^swagger/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
+    path('admin/', admin.site.urls),
+    path('', include('blog.urls')),
+    path('auth/', include('auth.urls')),
+    re_path(r'^swagger/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
 
-              ] + static(MEDIA_URL, document_root=MEDIA_ROOT)
-
-# TODO: PERMISON CLLAS QILSI JERAK
+]
+if DEBUG:
+    urlpatterns += static(STATIC_URL, document_root=STATIC_ROOT)
+    urlpatterns += static(MEDIA_URL, document_root=MEDIA_ROOT)
