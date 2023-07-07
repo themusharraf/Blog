@@ -14,20 +14,19 @@ JWT ✅
  
  auth/login/refresh/ 
 
-🟢 Blog post category ✅
 
- "api": "http://{ domen }/api/" 
- 
 🟢 Blog api docs swagger ✅
  
- http://{ domen }/swagger/ 
+ http://138.68.72.238:8100/swagger/ 
  
  🟢 Deploy Docker contanir
  
  Dockerfile
  
  docker-compose 
- 
+
+🟢 Blog api docs swagger ✅
+ http://138.68.72.238:8100 site api global 
  
  
  
