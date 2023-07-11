@@ -6,9 +6,9 @@ services:
     build: .
     command: >
       sh -c "python manage.py migrate &&
-             python manage.py runserver 0.0.0.0:8044"
+             python manage.py runserver 8001"
     ports:
-      - "8044:8044"
+      - "8044:8001"
     env_file:
       - .env
     depends_on:
