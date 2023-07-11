@@ -11,6 +11,8 @@ services:
       - "8044:8001"
     env_file:
       - .env
+    environment:
+      - "VIRTUAL_HOST=musharraf.diordev.me"
     depends_on:
       - pgdata
   minio:
@@ -40,7 +42,7 @@ services:
       - static_volume:/app/static
       - media_volume:/app/media
     ports:
-      - "8044:80"
+      - "6534:6534"
     depends_on:
       - django
 
