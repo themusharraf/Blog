@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  django:
+    container_name: dj
+    build: .
+    command: >
+      sh -c "python manage.py migrate &&
+             python manage.py runserver 0.0.0.0:8000"
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    depends_on:
+      - pgdata
+  minio:
+    container_name: minio
+    image: minio/minio
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+      - "9090:9090"
+    env_file:
+      - .env
+    command: server /export --console-address :9001
+
+  pgdata:
+    container_name: pg
+    image: postgres:alpine
+    ports:
+      - "5433:5432"
+    env_file:
+      - .env
+    volumes:
+      - pg_volume:/var/lib/postgresql/data
+
+volumes:
+  pg_volume:

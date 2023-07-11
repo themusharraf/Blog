@@ -1,12 +1,13 @@
 import os
 from pathlib import Path
 from rest_framework.authentication import SessionAuthentication, TokenAuthentication
+from dotenv import load_dotenv
 
+load_dotenv()
 BASE_DIR = Path(__file__).resolve().parent.parent
+SECRET_KEY = os.getenv('SECRET_KEY')
 
-SECRET_KEY = 'django-insecure-cw=%ckuz4ml_97-629598l%c0sb7uh#(0squ57fums4^+v(vjc'
-
-DEBUG = False
+DEBUG = os.getenv('DEBUG', True)
 
 ALLOWED_HOSTS = ['*']
 
@@ -39,7 +40,7 @@ ROOT_URLCONF = 'root.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates']
+        'DIRS': []
         ,
         'APP_DIRS': True,
         'OPTIONS': {
@@ -57,8 +58,12 @@ WSGI_APPLICATION = 'root.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': os.getenv('DB_ENGINE', 'django.db.backends.sqlite3'),
+        'NAME': os.getenv('POSTGRES_DB', BASE_DIR / 'db.sqlite3'),
+        'USER': os.getenv('POSTGRES_USER'),
+        'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
+        'HOST': os.getenv('POSTGRES_HOST'),
+        'PORT': os.getenv('POSTGRES_PORT')
     }
 }
 
@@ -89,6 +94,15 @@ REST_FRAMEWORK = {
     'DATETIME_FORMAT': '%H:%M %d-%m-%Y',
 
 }
+
+# Minio
+
+DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
+
+AWS_ACCESS_KEY_ID = os.getenv("MINIO_ROOT_USER")
+AWS_SECRET_ACCESS_KEY = os.getenv("MINIO_ROOT_PASSWORD")
+AWS_STORAGE_BUCKET_NAME = os.getenv("MINIO_BUCKET_NAME")
+AWS_S3_ENDPOINT_URL = os.getenv("MINIO_ENDPOINT")
 
 LANGUAGE_CODE = 'en-us'
 
