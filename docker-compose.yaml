@@ -40,7 +40,7 @@ services:
       - static_volume:/app/static
       - media_volume:/app/media
     ports:
-      - "80:80"
+      - "8044:8044"
     depends_on:
       - django
 
