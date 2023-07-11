@@ -33,6 +33,18 @@ services:
       - .env
     volumes:
       - pg_volume:/var/lib/postgresql/data
+  nginx:
+    build: ./nginx
+    restart: always
+    volumes:
+      - static_volume:/app/static
+      - media_volume:/app/media
+    ports:
+      - "8044:80"
+    depends_on:
+      - django
 
 volumes:
   pg_volume:
+  static_volume:
+  media_volume:
