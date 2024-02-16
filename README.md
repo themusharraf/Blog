@@ -8,7 +8,7 @@ JWT ✅
 
 🟢 Auth login register ✅
 
- auth/register/
+ auth/register/ 
  
  auth/ login/
  
